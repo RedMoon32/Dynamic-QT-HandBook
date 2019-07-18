@@ -14,7 +14,7 @@ public:
     TableAttributable();
     QString get_attribute(const char* name);
     QList<QPair<bool,const char *>> getAttributeProperties();
-    QList<const char *> getNestedAattributes();
+    QList<const char *> getNestedAttributes();
     QList<const char*> getAttributeNames();
     QString getPrimaryAttributes();
 };

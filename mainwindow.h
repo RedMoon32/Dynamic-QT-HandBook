@@ -22,7 +22,7 @@ public:
 public slots:
     void createNewCountry();
     void deletedSelected();
-
+    void saveAsHtml();
 private:
     Ui::MainWindow *ui;
     TableDataModel *td;

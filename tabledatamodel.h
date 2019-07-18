@@ -19,7 +19,7 @@ public:
     template<typename T> bool insertRows(int position, int rows, const QModelIndex &index);
     bool removeRows(int position, int rows, const QModelIndex &parent) Q_DECL_OVERRIDE;
     Qt::ItemFlags flags(const QModelIndex &index) const Q_DECL_OVERRIDE;
-    QList<TableAttributable*>& get_data();
+    QList<TableAttributable*>& getData();
     void setDelegateForNestedAttributes(QTableView *table, QStyledItemDelegate* qd);
 private:
     QList<TableAttributable*>& m_dataList;

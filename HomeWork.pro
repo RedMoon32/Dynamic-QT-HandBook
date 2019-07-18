@@ -26,6 +26,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
         basetableclass.cpp \
         combobox.cpp \
+        htmlconverter.cpp \
         main.cpp \
         mainwindow.cpp \
         tabledatamodel.cpp
@@ -33,6 +34,7 @@ SOURCES += \
 HEADERS += \
     basetableclass.h \
     combobox.h \
+    htmlconverter.h \
         mainwindow.h \
     entity.h \
     datamodel.h \

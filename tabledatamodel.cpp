@@ -81,7 +81,7 @@ bool TableDataModel::removeRows(int position, int rows, const QModelIndex &paren
 }
 
 
-QList<TableAttributable*>& TableDataModel::get_data(){
+QList<TableAttributable*>& TableDataModel::getData(){
     return m_dataList;
 }
 

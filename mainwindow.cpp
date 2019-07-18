@@ -3,9 +3,12 @@
 #include "tabledatamodel.h"
 #include "datamodel.h"
 #include "combobox.h"
+#include "htmlconverter.h"
 #include <QStyledItemDelegate>
 #include <QComboBox>
 #include <QMenu>
+#include <QFileDialog>
+#include <QMessageBox>
 
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -45,6 +48,7 @@ MainWindow::~MainWindow()
 
 
 void MainWindow::createNewCountry(){
+    qInfo()<<HtmlConverter::convertToHtml(td->getData());
     td->insertRows<Country>(0,1,QModelIndex());
 }
 
@@ -53,7 +57,26 @@ void MainWindow::deletedSelected(){
     td->removeRows(row,1,QModelIndex());
 }
 
+void MainWindow::saveAsHtml(){
+    QString fileName = QFileDialog::getSaveFileName(this,
+            tr("Save table data"), "",
+            tr("Html page (*.html);;All Files (*)"));
+    if (fileName.isEmpty())
+           return;
+       else {
+           QFile file(fileName);
+           if (!file.open(QIODevice::WriteOnly)) {
+               QMessageBox::information(this, tr("Unable to open file"),
+                   file.errorString());
+               return;
+           }
+           QTextStream out(&file);
+           out << HtmlConverter::convertToHtml(td->getData());
+           out.flush();
+           file.close();
+    }
 
+}
 
 void MainWindow::createMenus(){
     QMenu *fileMenu = menuBar()->addMenu(tr("&Edit"));
@@ -63,4 +86,7 @@ void MainWindow::createMenus(){
     QAction *deleteAct = new QAction(tr("&Delete selected row"), this);
     fileMenu->addAction(deleteAct);
     connect(deleteAct, &QAction::triggered, this, &MainWindow::deletedSelected);
+    QAction *convertAct = new QAction(tr("&Save as html"), this);
+    fileMenu->addAction(convertAct);
+    connect(convertAct, &QAction::triggered, this, &MainWindow::saveAsHtml);
 }
