@@ -22,9 +22,11 @@ QWidget *ComboBoxItemDelegate::createEditor(QWidget *parent, const QStyleOptionV
       auto vlist = value.value<QSequentialIterable>();
       for (const QVariant& v: vlist){
             TableAttributable* dynamic_list_item = qvariant_cast<TableAttributable*>(v);
-            QVariant stored_item;
-            stored_item.setValue(dynamic_list_item);
-            cb->addItem(dynamic_list_item->getPrimaryAttributes(),stored_item);
+            if (dynamic_list_item!=nullptr){
+                QVariant stored_item;
+                stored_item.setValue(dynamic_list_item);
+                cb->addItem(dynamic_list_item->getPrimaryAttribute(),stored_item);
+             }
       }
       return cb;
 }

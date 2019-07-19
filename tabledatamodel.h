@@ -21,6 +21,7 @@ public:
     Qt::ItemFlags flags(const QModelIndex &index) const Q_DECL_OVERRIDE;
     QList<TableAttributable*>& getData();
     void setDelegateForNestedAttributes(QTableView *table, QStyledItemDelegate* qd);
+
 private:
     QList<TableAttributable*>& m_dataList;
     QList<QPair<bool,const char *>> headers;

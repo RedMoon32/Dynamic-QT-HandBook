@@ -12,11 +12,11 @@ class TableAttributable: public QObject{
     Q_OBJECT
 public:
     TableAttributable();
-    QString get_attribute(const char* name);
+    QString getAttribute(const char* name);
     QList<QPair<bool,const char *>> getAttributeProperties();
     QList<const char *> getNestedAttributes();
     QList<const char*> getAttributeNames();
-    QString getPrimaryAttributes();
+    QString getPrimaryAttribute();
 };
 
 #endif // BASETABLECLASS_H

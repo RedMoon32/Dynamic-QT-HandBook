@@ -1,0 +1,50 @@
+<html>
+<style>
+    .hidden {
+        display: none;
+    }
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 1;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgb(0,0,0);
+        background-color: rgba(0,0,0,0.4);
+    }
+
+    .modal-content {
+        white-space: pre;
+        word-wrap:break-word;
+        background-color: #fefefe;
+        margin: 15% auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%;
+    }
+</style>
+
+<div id="myModal" class="modal">
+    <div class="modal-content">
+        <p></p>
+    </div>
+
+</div>
+%1
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+    $('tr').click(function() {
+        var modal = document.getElementById("myModal");
+        $("#myModal p").text($(this).find("td:hidden div")[0].innerText);
+        modal.style.display = "block";
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    });
+</script>
+</html>

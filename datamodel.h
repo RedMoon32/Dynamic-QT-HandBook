@@ -16,9 +16,7 @@ public:
     DataModel() {}
 
     void InitModel(){
-
         Country *NewCountry;
-
 
         NewCountry = new Country(QUuid::createUuid(), "United Arab Emirates");
         m_CountryList.append(NewCountry);

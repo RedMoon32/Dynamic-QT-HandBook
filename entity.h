@@ -15,10 +15,14 @@ public:
     explicit Country(QUuid Id, QString CountryName):
         m_Id{Id},
         m_CountryName{CountryName},
-        m_CountryPopulation(1000)
+        m_CountryPopulation(10000)
     {}
 
-     Country() {}
+     Country():
+         m_Id(QUuid::createUuid()),
+         m_CountryPopulation(10000),
+         m_CountryName("New Country")
+     {}
     ~Country(){}
 
     QUuid getId() const
@@ -122,5 +126,4 @@ private:
     QString m_CompanyName;
     QString m_Owner;
     Country *m_CompanyCountry;
-
 };

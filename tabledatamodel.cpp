@@ -28,7 +28,7 @@ QVariant TableDataModel::data(const QModelIndex &index, int role) const
         return QVariant();
     }
     TableAttributable* comp = m_dataList[index.row()];
-    QString property = comp->get_attribute(headers[index.column()].second);
+    QString property = comp->getAttribute(headers[index.column()].second);
     return property;
 }
 

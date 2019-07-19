@@ -24,9 +24,7 @@ MainWindow::MainWindow(QWidget *parent) :
 }
 
 void MainWindow::setUpTable(){
-
-
-    td = new TableDataModel((QList<TableAttributable*> &) dataModel->getCountryList(), this);
+    td = new TableDataModel((QList<TableAttributable*> &) dataModel->getCompanyList(), this);
     ComboBoxItemDelegate* cbid = new ComboBoxItemDelegate(ui->tableView, dataModel, td);
     td->setDelegateForNestedAttributes(ui->tableView, cbid);
     ui->tableView->setModel(td);
@@ -48,8 +46,7 @@ MainWindow::~MainWindow()
 
 
 void MainWindow::createNewCountry(){
-    qInfo()<<HtmlConverter::convertToHtml(td->getData());
-    td->insertRows<Country>(0,1,QModelIndex());
+    td->insertRows<Company>(0,1,QModelIndex());
 }
 
 void MainWindow::deletedSelected(){
@@ -71,9 +68,10 @@ void MainWindow::saveAsHtml(){
                return;
            }
            QTextStream out(&file);
-           out << HtmlConverter::convertToHtml(td->getData());
+           out << HtmlConverter().convertToHtml(td->getData());
            out.flush();
            file.close();
+           QMessageBox::information(this, tr("Status"), "Successfully saved");
     }
 
 }
