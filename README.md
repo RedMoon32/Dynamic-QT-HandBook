@@ -20,5 +20,5 @@
  Итак чтобы отобразить ваш собственный класс в справочнике необходимо:
  1) Отнаследовать его от ```TableAttributable``` (конструктор не принимающий параметры должен быть публичным)
  2) Передать лист с данными в методе ```MainWindow::setUpTable```: ```td = new TableDataModel((QList<TableAttributable*> &) YOUR_LIST, this);```
- 3) Изменить добавление нового класса в справочнике на ваш в метод ``` MainWindow::createNewCountry```: ```td->insertRows<YOUR_CLASS>(0,1,QModelIndex());```
+ 3) Изменить добавление нового класса в справочнике на ваш в метод (так пришлось сделать из за того что ```Q_OBJECT``` не поддерживают темплейтинг ``` MainWindow::createNewCountry```: ```td->insertRows<YOUR_CLASS>(0,1,QModelIndex());```
  4) Добавить в класс ```DataModel``` ```Q_PROPERTY``` с названием вашего класса, заканчивающимся на ```_List``` для динамического получение данных, например : ```Q_PROPERTY(const QList<Country*>& YOUR_CLASS_List READ  getCountryList)```
