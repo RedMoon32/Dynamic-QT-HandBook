@@ -26,3 +26,7 @@
 
 ### Дополнительно
 Код может показаться вам странным или кринжовым и я вас понимаю, но если начал полиморфный код то остановиться уже поздно))0)
+### Скриншоты
+(Если по каким то причинам вам не хочется запускать код)
+![program](https://github.com/RedMoon32/Dynamic-QT-HandBook/blob/master/images/1.jpg)
+![html](https://github.com/RedMoon32/Dynamic-QT-HandBook/blob/master/images/2.jpg)
