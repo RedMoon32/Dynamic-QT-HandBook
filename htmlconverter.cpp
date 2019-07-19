@@ -49,7 +49,7 @@ QString HtmlConverter::getNestedRow(TableAttributable* item, const char *itemNam
 QString HtmlConverter::getTableRows(const QList<QPair<bool, const char*>>& props, QList<TableAttributable*>& table){
     QString tr;
     for (auto const &item:table){
-        QString hoverText = "";
+        QString hoverText;
         QString td;
         for (auto const &prop: props){
             if (!prop.first){
@@ -58,7 +58,7 @@ QString HtmlConverter::getTableRows(const QList<QPair<bool, const char*>>& props
             else{
                 auto nest = qvariant_cast<TableAttributable*>(item->property(prop.second));
                 if (nest!=nullptr)
-                    hoverText+=HtmlConverter::getNestedRow(nest,prop.second);
+                    hoverText+=getNestedRow(nest,prop.second);
             }
         }
         td+=createHtmlTag("td", createHtmlTag("div",hoverText),"class='hidden'");
