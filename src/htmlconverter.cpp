@@ -61,6 +61,8 @@ QString HtmlConverter::getTableRows(const QList<QPair<bool, const char*>>& props
                     hoverText+=getNestedRow(nest,prop.second);
             }
         }
+        if (hoverText == "")
+            hoverText = "No additional infomation provided";
         td+=createHtmlTag("td", createHtmlTag("div",hoverText),"class='hidden'");
         tr+= createHtmlTag("tr", td);
     }

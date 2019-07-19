@@ -54,6 +54,7 @@ void MainWindow::deletedSelected(){
     td->removeRows(row,1,QModelIndex());
 }
 
+
 void MainWindow::saveAsHtml(){
     QString fileName = QFileDialog::getSaveFileName(this,
             tr("Save table data"), "",

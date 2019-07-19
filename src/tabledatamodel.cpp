@@ -5,7 +5,7 @@
 TableDataModel::TableDataModel(QList<TableAttributable*> &dataList, QObject *parent): QAbstractTableModel (parent), m_dataList(dataList)
 {
     if ( m_dataList.length()>0){
-        headers = m_dataList[0]->getAttributeProperties();
+        m_headers = m_dataList[0]->getAttributeProperties();
     }
 }
 
@@ -19,7 +19,7 @@ int TableDataModel::rowCount(const QModelIndex &parent) const
 int TableDataModel::columnCount(const QModelIndex &parent) const
 {
     Q_UNUSED(parent);
-    return headers.length();
+    return m_headers.length();
 }
 
 QVariant TableDataModel::data(const QModelIndex &index, int role) const
@@ -28,14 +28,14 @@ QVariant TableDataModel::data(const QModelIndex &index, int role) const
         return QVariant();
     }
     TableAttributable* comp = m_dataList[index.row()];
-    QString property = comp->getAttribute(headers[index.column()].second);
+    QString property = comp->getAttribute(m_headers[index.column()].second);
     return property;
 }
 
 QVariant TableDataModel::headerData(int section, Qt::Orientation orientation, int role) const
 {
     if (role == Qt::DisplayRole && orientation == Qt::Horizontal) {
-        return headers[section].second;
+        return m_headers[section].second;
     }
     return QVariant();
 }
@@ -43,7 +43,7 @@ QVariant TableDataModel::headerData(int section, Qt::Orientation orientation, in
 bool TableDataModel::setData(const QModelIndex &index, const QVariant &value, int role)
  {
     int row = index.row();
-    if (index.isValid() && role == Qt::EditRole && m_dataList[row]->property(headers[index.column()].second)!=value) {
+    if (index.isValid() && role == Qt::EditRole && m_dataList[row]->property(m_headers[index.column()].second)!=value) {
         QMessageBox msgBox;
         msgBox.setText("The row has been modified.");
         msgBox.setInformativeText("Do you want to save your changes?");
@@ -51,7 +51,7 @@ bool TableDataModel::setData(const QModelIndex &index, const QVariant &value, in
         msgBox.setDefaultButton(QMessageBox::Save);
         int ret = msgBox.exec();
         if (ret == QMessageBox::Save){
-            m_dataList[row]->setProperty(headers[index.column()].second,value);
+            m_dataList[row]->setProperty(m_headers[index.column()].second,value);
             emit dataChanged(index,index,{Qt::DisplayRole,Qt::EditRole});
         }
         return true;
@@ -86,8 +86,9 @@ QList<TableAttributable*>& TableDataModel::getData(){
 }
 
 void TableDataModel::setDelegateForNestedAttributes(QTableView *table, QStyledItemDelegate *qd){
-    for (int i = 0;i<headers.length(); i++){
-        if (headers[i].first)
+    for (int i = 0;i<m_headers.length(); i++){
+        if (m_headers[i].first)
             table->setItemDelegateForColumn(i,qd);
     }
 }
+

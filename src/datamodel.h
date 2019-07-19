@@ -28,8 +28,11 @@ public:
 
         NewCountry = new Country(QUuid::createUuid(), "Canada");
         m_CountryList.append(NewCountry);
-        auto comp = new Company( QUuid::createUuid(), "Cenovus Energy", NewCountry,"Vasya" );
-        m_CompanyList.append(comp);
+
+        m_CompanyList.append(new Company( QUuid::createUuid(), "Cenovus Energy", NewCountry, "Vasya" ));
+
+        NewCountry = new Country(QUuid::createUuid(), "Russia");
+        m_CountryList.append(NewCountry);
     }
 
     ~DataModel() {

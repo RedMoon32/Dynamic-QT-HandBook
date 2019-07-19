@@ -21,10 +21,11 @@ public:
     Qt::ItemFlags flags(const QModelIndex &index) const Q_DECL_OVERRIDE;
     QList<TableAttributable*>& getData();
     void setDelegateForNestedAttributes(QTableView *table, QStyledItemDelegate* qd);
+    bool dataIsFilled();
 
 private:
     QList<TableAttributable*>& m_dataList;
-    QList<QPair<bool,const char *>> headers;
+    QList<QPair<bool,const char *>> m_headers;
 };
 
 template<typename T> bool TableDataModel::insertRows(int position, int rows, const QModelIndex &index){

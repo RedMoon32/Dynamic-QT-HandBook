@@ -1,10 +1,5 @@
-#-------------------------------------------------
-#
-# Project created by QtCreator 2018-07-27T09:48:56
-#
-#-------------------------------------------------
 
-QT       += core gui
+QT += core gui
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -23,25 +18,30 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-        basetableclass.cpp \
-        combobox.cpp \
-        htmlconverter.cpp \
-        main.cpp \
-        mainwindow.cpp \
-        tabledatamodel.cpp
+        src/basetableclass.cpp \
+        src/combobox.cpp \
+        src/htmlconverter.cpp \
+        src/main.cpp \
+        src/mainwindow.cpp \
+        src/tabledatamodel.cpp
 
 HEADERS += \
-    basetableclass.h \
-    combobox.h \
-    htmlconverter.h \
-        mainwindow.h \
-    entity.h \
-    datamodel.h \
-    tabledatamodel.h
+    src/basetableclass.h \
+    src/combobox.h \
+    src/htmlconverter.h \
+        src/mainwindow.h \
+    src/entity.h \
+    src/datamodel.h \
+    src/tabledatamodel.h
 
 FORMS += \
-        mainwindow.ui
+        src/mainwindow.ui
+
+data_files.path = $$OUT_PWD
+data_files.files = data.txt
+
+INSTALLS += \
+    template.html
 
 DISTFILES += \
     template.html
-

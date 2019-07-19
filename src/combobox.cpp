@@ -15,7 +15,10 @@ QWidget *ComboBoxItemDelegate::createEditor(QWidget *parent, const QStyleOptionV
       Q_UNUSED(option);
       QComboBox *cb = new QComboBox(parent);
       auto prop_name = m_tableDataModel->headerData(index.column(),Qt::Horizontal,Qt::DisplayRole).toString();
-      auto comp_attribute_type = m_dataModel->getCompanyList()[0]->property(prop_name.toLocal8Bit()).typeName();
+      auto list = m_tableDataModel->getData();
+      if (list.length()==0)
+          return cb;
+      auto comp_attribute_type = list[0]->property(prop_name.toLocal8Bit()).typeName();
       QString q = comp_attribute_type;
       q = q.left(q.length()-1) + DYNAMIC_LIST_POSTFIX;
       auto value = m_dataModel->property(q.toLocal8Bit());
