@@ -20,8 +20,8 @@ public:
     ~MainWindow();
 
 public slots:
-    void createNewCountry();
-    void deletedSelected();
+    void addRow();
+    void deleteRow();
     void saveAsHtml();
 
 private:

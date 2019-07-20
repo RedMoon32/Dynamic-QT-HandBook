@@ -24,8 +24,10 @@ MainWindow::MainWindow(QWidget *parent) :
 }
 
 void MainWindow::setUpTable(){
+    // array which will be displayed in qtableview)
     td = new TableDataModel((QList<TableAttributable*> &) dataModel->getCountryList(), this);
     ComboBoxItemDelegate* cbid = new ComboBoxItemDelegate(ui->tableView, dataModel, td);
+    // set combobox for all properties which are tableAttributable* (e.g. CompanyCountry)
     td->setDelegateForNestedAttributes(ui->tableView, cbid);
     ui->tableView->setModel(td);
     for (int c = 0; c < ui->tableView->horizontalHeader()->count(); ++c)
@@ -45,11 +47,12 @@ MainWindow::~MainWindow()
 
 
 
-void MainWindow::createNewCountry(){
+void MainWindow::addRow(){
+    // no other way, as QObjects does not support templating
     td->insertRows<Company>(0,1,QModelIndex());
 }
 
-void MainWindow::deletedSelected(){
+void MainWindow::deleteRow(){
     int row = ui->tableView->selectionModel()->currentIndex().row();
     td->removeRows(row,1,QModelIndex());
 }
@@ -81,10 +84,10 @@ void MainWindow::createMenus(){
     QMenu *fileMenu = menuBar()->addMenu(tr("&Edit"));
     QAction *openAct = new QAction(tr("&Add new company"), this);
     fileMenu->addAction(openAct);
-    connect(openAct, &QAction::triggered, this, &MainWindow::createNewCountry);
+    connect(openAct, &QAction::triggered, this, &MainWindow::addRow);
     QAction *deleteAct = new QAction(tr("&Delete selected row"), this);
     fileMenu->addAction(deleteAct);
-    connect(deleteAct, &QAction::triggered, this, &MainWindow::deletedSelected);
+    connect(deleteAct, &QAction::triggered, this, &MainWindow::deleteRow);
     QAction *convertAct = new QAction(tr("&Save as html"), this);
     fileMenu->addAction(convertAct);
     connect(convertAct, &QAction::triggered, this, &MainWindow::saveAsHtml);

@@ -3,6 +3,10 @@
 #include <QFile>
 #include <QDir>
 
+/**
+ * @brief convert List of TableAttributable* to html-string
+ * @param filePath - template to be used
+ */
 HtmlConverter::HtmlConverter(QString filePath){
     QFile file(filePath);
     if (!file.open(QFile::ReadOnly | QFile::Text)){
@@ -34,6 +38,12 @@ QString HtmlConverter::convertToHtml(QList<TableAttributable*>& table)
     return m_template.arg(res);
 }
 
+/**
+ * @brief Get Info for popup window (e.g. Country Info)
+ * @param item - pointer to nested item (e.g. Country*)
+ * @param itemName - name of field in upper class (e.g. CompanyCountry)
+ * @return string representing nested item
+ */
 QString HtmlConverter::getNestedRow(TableAttributable* item, const char *itemName){
     auto props = item->getAttributeProperties();
     QString res = QString(itemName)+" :\n\n";

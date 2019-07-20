@@ -12,6 +12,7 @@ class DataModel : public QObject
     // упарываемся по полной
     Q_PROPERTY(const QList<Company*>& Company_List READ  getCompanyList)
     Q_PROPERTY(const QList<Country*>& Country_List READ  getCountryList)
+    // add here your list if you want to display it
 public:
     DataModel() {}
 
