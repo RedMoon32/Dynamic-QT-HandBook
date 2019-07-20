@@ -37,11 +37,7 @@ HEADERS += \
 FORMS += \
         src/mainwindow.ui
 
-data_files.path = $$OUT_PWD
-data_files.files = data.txt
 
-INSTALLS += \
-    template.html
 
 DISTFILES += \
     template.html
