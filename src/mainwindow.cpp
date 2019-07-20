@@ -24,7 +24,7 @@ MainWindow::MainWindow(QWidget *parent) :
 }
 
 void MainWindow::setUpTable(){
-    td = new TableDataModel((QList<TableAttributable*> &) dataModel->getCountryList(), this);
+    td = new TableDataModel((QList<TableAttributable*> &) dataModel->getCompanyList(), this);
     ComboBoxItemDelegate* cbid = new ComboBoxItemDelegate(ui->tableView, dataModel, td);
     td->setDelegateForNestedAttributes(ui->tableView, cbid);
     ui->tableView->setModel(td);
