@@ -30,4 +30,4 @@
 (Если по каким то причинам вам не хочется запускать код)
 ![program](https://github.com/RedMoon32/Dynamic-QT-HandBook/blob/master/images/1.jpg)
 ![program2](https://github.com/RedMoon32/Dynamic-QT-HandBook/blob/master/images/3.jpg)
-![html](https://github.com/RedMoon32/Dynamic-QT-HandBook/blob/master/images/3.jpg)
+![html](https://github.com/RedMoon32/Dynamic-QT-HandBook/blob/master/images/2.jpg)
